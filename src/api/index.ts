@@ -2,17 +2,23 @@
 export * from './config'
 export * from './types'
 
-// Workouts API
+// Hevy API - Workouts
 export * from './workouts'
 
-// Routines API
+// Hevy API - Routines
 export * from './routines'
 
-// Exercise Templates API
+// Hevy API - Exercise Templates
 export * from './exerciseTemplates'
 
-// Routine Folders API
+// Hevy API - Routine Folders
 export * from './routineFolders'
 
-// Webhook API
+// Hevy API - Webhook
 export * from './webhook'
+
+// Fitbit API - Activities
+export * from './fitbitActivities'
+
+// Fitbit API - OAuth 2.0
+export * from './fitbitOAuth'

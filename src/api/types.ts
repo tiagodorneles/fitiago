@@ -1,4 +1,4 @@
-// TypeScript interfaces for Hevy API
+// TypeScript interfaces for Hevy API and Fitbit API
 
 export interface PaginatedResponse<T> {
   workouts?: T[] // For workout responses
@@ -28,6 +28,7 @@ export interface WorkoutExercise {
   title: string
   notes?: string
   rest_seconds?: number
+  superset_id?: string
   sets: WorkoutSet[]
 }
 
@@ -175,4 +176,90 @@ export interface PaginationParams {
 
 export interface WorkoutEventsParams extends PaginationParams {
   since?: string // ISO date string
+}
+
+// Fitbit API Types
+export interface FitbitActivityLevel {
+  minutes: number
+  name: 'sedentary' | 'lightly' | 'fairly' | 'very'
+}
+
+export interface FitbitActiveZoneMinutes {
+  minutesInHeartRateZones: FitbitHeartRateZone[]
+  totalMinutes: number
+}
+
+export interface FitbitHeartRateZone {
+  minuteMultiplier: number
+  minutes: number
+  order: number
+  type: 'OUT_OF_ZONE' | 'FAT_BURN' | 'CARDIO' | 'PEAK'
+  zoneName: 'Out of Range' | 'Fat Burn' | 'Cardio' | 'Peak'
+}
+
+export interface FitbitManualValues {
+  calories: boolean
+  distance: boolean
+  steps: boolean
+}
+
+export interface FitbitActivitySource {
+  id: string
+  name: string
+  type: string
+  url?: string
+}
+
+export interface FitbitActivity {
+  activeDuration: number
+  activityLevel: FitbitActivityLevel[]
+  activityName: string
+  activityTypeId: number
+  averageHeartRate?: number
+  calories: number
+  caloriesLink?: string
+  detailsLink?: string
+  distance?: number
+  distanceUnit?: string
+  duration: number
+  elevationGain?: number
+  hasActiveZoneMinutes?: boolean
+  hasStartTime?: boolean
+  isFavorite?: boolean
+  lastModified: string
+  logId: number
+  logType: 'auto_detected' | 'manual' | 'mobile_run' | 'tracker'
+  manualValuesSpecified: FitbitManualValues
+  originalDuration: number
+  originalStartTime: string
+  pace?: number
+  source?: FitbitActivitySource
+  speed?: number
+  startTime: string
+  steps?: number
+  tcxLink?: string
+  activeZoneMinutes?: FitbitActiveZoneMinutes
+}
+
+export interface FitbitActivityPagination {
+  afterDate?: string
+  beforeDate?: string
+  limit: number
+  next: string
+  offset: number
+  previous: string
+  sort: 'asc' | 'desc'
+}
+
+export interface FitbitActivityLogListResponse {
+  activities: FitbitActivity[]
+  pagination: FitbitActivityPagination
+}
+
+export interface FitbitActivityLogListParams {
+  beforeDate?: string // Format: yyyy-MM-ddTHH:mm:ss or yyyy-MM-dd
+  afterDate?: string // Format: yyyy-MM-ddTHH:mm:ss or yyyy-MM-dd
+  sort: 'asc' | 'desc' // Use 'asc' with afterDate, 'desc' with beforeDate
+  limit: number // Maximum 100
+  offset?: number // Currently only 0 is supported
 }
