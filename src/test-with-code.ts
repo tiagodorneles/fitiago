@@ -28,7 +28,7 @@ async function testWithAuthCode() {
     // Step 1: Exchange code for tokens
     console.log('🔄 Step 1: Exchanging authorization code for access token...')
 
-    if (STATE !== EXPECTED_STATE) {
+    if (STATE !== (EXPECTED_STATE as string)) {
       throw new Error('State mismatch! Security check failed.')
     }
 

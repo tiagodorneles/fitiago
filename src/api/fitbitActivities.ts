@@ -55,7 +55,7 @@ export const useFitbitActivityLogList = (
   const endpoint = `/1/user/${userId}/activities/list.json?${queryString}`
 
   return useQuery({
-    key: () => ['fitbit', 'activities', 'list', userId, params],
+    key: () => ['fitbit', 'activities', 'list', userId, JSON.stringify(params)],
     query: () => fitbitApiRequest<FitbitActivityLogListResponse>(endpoint, accessToken),
   })
 }

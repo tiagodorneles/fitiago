@@ -29,8 +29,9 @@
 
       <!-- Pagination info -->
       <div class="text-center text-sm text-gray-500 mt-6">
-        Page {{ data.page }} of {{ Math.ceil(data.total_count / data.page_size) }} ({{
-          data.total_count
+        Page {{ data.page }} of
+        {{ Math.ceil((data.total_count || 0) / (data.page_size || 10)) }} ({{
+          data.total_count || 0
         }}
         total workouts)
       </div>
@@ -39,10 +40,10 @@
     <!-- Create workout button -->
     <button
       @click="createSampleWorkout"
-      :disabled="createMutation.isPending.value"
+      :disabled="createMutation.isLoading.value"
       class="mt-6 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white px-4 py-2 rounded-lg transition-colors"
     >
-      {{ createMutation.isPending.value ? 'Creating...' : 'Create Sample Workout' }}
+      {{ createMutation.isLoading.value ? 'Creating...' : 'Create Sample Workout' }}
     </button>
   </div>
 </template>

@@ -13,7 +13,7 @@ async function finalTest() {
     'j3x7b_NJzyYotZ5a5Du-MBo7nGXopcPSjQ7B9.cW~gJMN9zXA-Wc9.KNnr19~dTz2bTx3gCEGHJF3Mj.8~AQCNl_y4qbPCi2Lmh8rvJjHWtV3vF3tLKM0z'
   const EXPECTED_STATE = 'NqvyR2xqaYX9Ez0869Ie3Rj.k~~SS8PY'
 
-  if (AUTHORIZATION_CODE === 'PASTE_YOUR_CODE_HERE') {
+  if (AUTHORIZATION_CODE === ('PASTE_YOUR_CODE_HERE' as string)) {
     console.log('❌ Please paste your authorization code!')
     console.log('')
     console.log("🔗 If you haven't authorized yet, click this URL:")
